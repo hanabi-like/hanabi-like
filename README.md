@@ -1,6 +1,6 @@
 ### High there 👋
 
-2024-     🧑‍💻Shanghai Huawei Technologies Co., Ltd. 🛜Software Development Engineer
+2024-2026 🧑‍💻Shanghai Huawei Technologies Co., Ltd. 🛜Software Development Engineer
 
 2021-2024 🏫Shanghai Jiao Tong University 🤖Institute of Robotics
 
