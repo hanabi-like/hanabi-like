@@ -1,51 +1,78 @@
 import requests
-import matplotlib.pyplot as plt
 import os
 
 USERNAME = os.environ["GITHUB_ACTOR"]
-TOKEN = os.environ["GITHUB_TOKEN"]
+OUTPUT = "assets/languages.svg"
 
-headers = {
-    "Authorization": f"token {TOKEN}"
-}
+repos_url = f"https://api.github.com/users/{USERNAME}/repos?per_page=100"
 
-# 获取所有仓库
-repos = []
-page = 1
+repos = requests.get(repos_url).json()
 
-while True:
-    url = f"https://api.github.com/users/{USERNAME}/repos?per_page=100&page={page}"
-    r = requests.get(url, headers=headers).json()
+language_bytes = {}
 
-    if not r:
-        break
-
-    repos.extend(r)
-    page += 1
-
-language_totals = {}
-
-# 汇总语言
+# 获取所有仓库语言数据
 for repo in repos:
-    langs = requests.get(repo["languages_url"], headers=headers).json()
+    if repo["fork"]:
+        continue
+
+    lang_url = repo["languages_url"]
+    langs = requests.get(lang_url).json()
 
     for lang, size in langs.items():
-        language_totals[lang] = language_totals.get(lang, 0) + size
+        language_bytes[lang] = language_bytes.get(lang, 0) + size
 
-# 过滤太小占比
-language_totals = dict(
-    sorted(language_totals.items(), key=lambda x: x[1], reverse=True)
-)
+# 排序
+sorted_langs = sorted(language_bytes.items(),
+                      key=lambda x: x[1],
+                      reverse=True)
 
-# 生成图表
-plt.figure(figsize=(6,6))
-plt.pie(
-    language_totals.values(),
-    labels=language_totals.keys(),
-    autopct='%1.1f%%'
-)
+total = sum(language_bytes.values())
 
-plt.title("All Repository Language Distribution")
+# ===== SVG 参数 =====
+bar_max_width = 400
+bar_height = 18
+gap = 28
+left_margin = 140
 
-os.makedirs("assets", exist_ok=True)
-plt.savefig("assets/languages.svg", format="svg")
+svg_height = gap * len(sorted_langs) + 40
+
+svg = f'''
+<svg width="700" height="{svg_height}" xmlns="http://www.w3.org/2000/svg">
+<style>
+    text {{
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        fill: #c9d1d9;
+    }}
+</style>
+'''
+
+y = 30
+
+for lang, size in sorted_langs:
+    percent = size / total
+    bar_width = percent * bar_max_width
+    percent_text = f"{percent*100:.1f}%"
+
+    svg += f'''
+    <text x="10" y="{y}">{lang}</text>
+
+    <rect x="{left_margin}" y="{y-14}"
+          width="{bar_width}"
+          height="{bar_height}"
+          rx="6"
+          fill="#58a6ff"/>
+
+    <text x="{left_margin + bar_width + 10}" y="{y}">
+        {percent_text}
+    </text>
+    '''
+
+    y += gap
+
+svg += "</svg>"
+
+with open(OUTPUT, "w", encoding="utf-8") as f:
+    f.write(svg)
+
+print("SVG generated!")
