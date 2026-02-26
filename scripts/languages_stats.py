@@ -9,7 +9,7 @@ if not USERNAME:
 OUTPUT = "assets/languages.svg"
 os.makedirs("assets", exist_ok=True)
 
-# ========= 获取所有仓库语言（分页） =========
+# ========= 获取所有仓库 =========
 language_bytes = {}
 page = 1
 while True:
@@ -18,7 +18,7 @@ while True:
     if not repos:
         break
     for repo in repos:
-        if repo.get("fork"):
+        if repo["fork"]:
             continue
         langs = requests.get(repo["languages_url"]).json()
         for lang, size in langs.items():
@@ -29,59 +29,54 @@ while True:
 sorted_langs = sorted(language_bytes.items(), key=lambda x: x[1], reverse=True)
 total = sum(language_bytes.values())
 
-if not sorted_langs:
-    print("没有找到语言数据！")
-    exit(1)
-
-# ========= SVG 参数 =========
-svg_width = 100       # 内部坐标系横向范围 0-100
-gap = 10              # 每行间距
-top_margin = 5
-bar_start_x = 25      # 横向柱状图起点
-bar_max_width = 70    # 最大柱状图长度占 viewBox 横向百分比
-num_langs = len(sorted_langs)
-svg_height = top_margin + gap * num_langs + 5  # 自动顶/底留白
-
-# 字体和柱状图高度自适应
-bar_height = gap * 0.8                # 柱状图占行高 80%
-text_font_size = bar_height * 0.6     # 字体占柱状图高 60%
-
-# ========= SVG 开始 =========
-svg = f'''<svg viewBox="0 0 {svg_width} {svg_height}" width="100%" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg">
-<style>
-text {{
-    font-family: Arial, sans-serif;
-    font-size: {text_font_size};
-    fill: #c9d1d9;
-}}
-</style>
-'''
-
-y = top_margin + gap / 2
-
 # 最大语言字节数，用于比例缩放
 max_size = sorted_langs[0][1]
 
-# ========= 绘制柱状图 =========
+# ===== SVG 参数 =====
+bar_max_width = 400
+bar_height = 18
+gap = 28
+left_margin = 140
+
+svg_height = gap * len(sorted_langs) + 40
+
+svg = f'''
+<svg width="700" height="{svg_height}" xmlns="http://www.w3.org/2000/svg">
+<style>
+    text {{
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        fill: #c9d1d9;
+    }}
+</style>
+'''
+
+y = 30
+
 for lang, size in sorted_langs:
     percent = size / total
-    # 最大语言占满 bar_max_width，其余按比例
-    bar_len = size / max_size * bar_max_width
+    bar_width = size / max_size * bar_max_width
     percent_text = f"{percent*100:.1f}%"
 
-    # 语言名称
-    svg += f'<text x="1" y="{y}">{lang}</text>'
-    # 横向柱状图
-    svg += f'<rect x="{bar_start_x}" y="{y - bar_height / 2}" width="{bar_len}" height="{bar_height}" rx="1" fill="#58a6ff"/>'
-    # 百分比文字
-    svg += f'<text x="{bar_start_x + bar_len + 1}" y="{y}">{percent_text}</text>'
+    svg += f'''
+    <text x="10" y="{y}">{lang}</text>
+
+    <rect x="{left_margin}" y="{y-14}"
+          width="{bar_width}"
+          height="{bar_height}"
+          rx="6"
+          fill="#58a6ff"/>
+
+    <text x="{left_margin + bar_width + 10}" y="{y}">
+        {percent_text}
+    </text>
+    '''
 
     y += gap
 
 svg += "</svg>"
 
-# ========= 写入文件 =========
 with open(OUTPUT, "w", encoding="utf-8") as f:
     f.write(svg)
 
-print(f"SVG generated successfully for user {USERNAME}!")
+print("SVG generated!")
