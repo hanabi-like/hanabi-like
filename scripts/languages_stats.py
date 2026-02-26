@@ -43,8 +43,8 @@ num_langs = len(sorted_langs)
 svg_height = top_margin + gap * num_langs + 5  # 自动顶/底留白
 
 # 字体和柱状图高度自适应
-text_font_size = gap * 0.6       # 字体占行高 60%
-bar_height = gap * 0.8           # 柱状图占行高 80%
+bar_height = gap * 0.8                # 柱状图占行高 80%
+text_font_size = bar_height * 0.6     # 字体占柱状图高 60%
 
 # ========= SVG 开始 =========
 svg = f'''<svg viewBox="0 0 {svg_width} {svg_height}" width="100%" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg">
