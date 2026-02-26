@@ -29,29 +29,30 @@ while True:
 sorted_langs = sorted(language_bytes.items(), key=lambda x: x[1], reverse=True)
 total = sum(language_bytes.values())
 
-# 最大语言字节数，用于比例缩放
+# ========= 最大语言字节数 =========
 max_size = sorted_langs[0][1]
 
 # ===== SVG 参数 =====
-bar_max_width = 400
-bar_height = 18
-gap = 28
-left_margin = 140
-
-svg_height = gap * len(sorted_langs) + 40
+bar_max_width = 500
+bar_height = 20
+gap = 30
+left_margin = 150
+top_margin = 20
+svg_width = bar_max_width + left_margin * 2
+svg_height = gap * len(sorted_langs) + top_margin * 2
 
 svg = f'''
-<svg width="700" height="{svg_height}" xmlns="http://www.w3.org/2000/svg">
+<svg width="{svg_width}" height="{svg_height}" xmlns="http://www.w3.org/2000/svg">
 <style>
     text {{
         font-family: Arial, sans-serif;
-        font-size: 14px;
+        font-size: 15px;
         fill: #c9d1d9;
     }}
 </style>
 '''
 
-y = 30
+y = top_margin + bar_height
 
 for lang, size in sorted_langs:
     percent = size / total
@@ -59,15 +60,15 @@ for lang, size in sorted_langs:
     percent_text = f"{percent*100:.1f}%"
 
     svg += f'''
-    <text x="10" y="{y}">{lang}</text>
+    <text x="20" y="{y}">{lang}</text>
 
-    <rect x="{left_margin}" y="{y-14}"
+    <rect x="{left_margin}" y="{y - bar_height / 2}"
           width="{bar_width}"
           height="{bar_height}"
           rx="6"
           fill="#58a6ff"/>
 
-    <text x="{left_margin + bar_width + 10}" y="{y}">
+    <text x="{left_margin + bar_width + 20}" y="{y}">
         {percent_text}
     </text>
     '''
