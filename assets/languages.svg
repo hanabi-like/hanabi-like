@@ -1,9 +1,118 @@
-<svg viewBox="0 0 100 100" width="100%" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg">
+
+<svg width="700" height="292" xmlns="http://www.w3.org/2000/svg">
 <style>
-text {
-    font-family: Arial, sans-serif;
-    font-size: 4.8;
-    fill: #c9d1d9;
-}
+    text {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        fill: #c9d1d9;
+    }
 </style>
-<text x="1" y="10.0">C</text><rect x="25" y="6.0" width="70.0" height="8.0" rx="1" fill="#58a6ff"/><text x="96.0" y="10.0">39.0%</text><text x="1" y="20.0">C++</text><rect x="25" y="16.0" width="63.70268645674388" height="8.0" rx="1" fill="#58a6ff"/><text x="89.70268645674389" y="20.0">35.5%</text><text x="1" y="30.0">Python</text><rect x="25" y="26.0" width="25.736255606417902" height="8.0" rx="1" fill="#58a6ff"/><text x="51.7362556064179" y="30.0">14.3%</text><text x="1" y="40.0">MATLAB</text><rect x="25" y="36.0" width="7.979747537799972" height="8.0" rx="1" fill="#58a6ff"/><text x="33.97974753779997" y="40.0">4.4%</text><text x="1" y="50.0">Java</text><rect x="25" y="46.0" width="7.717575253155777" height="8.0" rx="1" fill="#58a6ff"/><text x="33.71757525315578" y="50.0">4.3%</text><text x="1" y="60.0">HTML</text><rect x="25" y="56.0" width="2.9188514357053683" height="8.0" rx="1" fill="#58a6ff"/><text x="28.918851435705367" y="60.0">1.6%</text><text x="1" y="70.0">CMake</text><rect x="25" y="66.0" width="0.919221343690757" height="8.0" rx="1" fill="#58a6ff"/><text x="26.919221343690758" y="70.0">0.5%</text><text x="1" y="80.0">M</text><rect x="25" y="76.0" width="0.21297452258750638" height="8.0" rx="1" fill="#58a6ff"/><text x="26.212974522587505" y="80.0">0.1%</text><text x="1" y="90.0">PowerShell</text><rect x="25" y="86.0" width="0.1728395061728395" height="8.0" rx="1" fill="#58a6ff"/><text x="26.17283950617284" y="90.0">0.1%</text></svg>
+
+    <text x="10" y="30">C</text>
+
+    <rect x="140" y="16"
+          width="400.0"
+          height="18"
+          rx="6"
+          fill="#58a6ff"/>
+
+    <text x="550.0" y="30">
+        39.1%
+    </text>
+    
+    <text x="10" y="58">C++</text>
+
+    <rect x="140" y="44"
+          width="364.0153511813936"
+          height="18"
+          rx="6"
+          fill="#58a6ff"/>
+
+    <text x="514.0153511813936" y="58">
+        35.6%
+    </text>
+    
+    <text x="10" y="86">Python</text>
+
+    <rect x="140" y="72"
+          width="144.2086281037592"
+          height="18"
+          rx="6"
+          fill="#58a6ff"/>
+
+    <text x="294.2086281037592" y="86">
+        14.1%
+    </text>
+    
+    <text x="10" y="114">MATLAB</text>
+
+    <rect x="140" y="100"
+          width="45.598557358856986"
+          height="18"
+          rx="6"
+          fill="#58a6ff"/>
+
+    <text x="195.598557358857" y="114">
+        4.5%
+    </text>
+    
+    <text x="10" y="142">Java</text>
+
+    <rect x="140" y="128"
+          width="44.100430018033016"
+          height="18"
+          rx="6"
+          fill="#58a6ff"/>
+
+    <text x="194.10043001803302" y="142">
+        4.3%
+    </text>
+    
+    <text x="10" y="170">HTML</text>
+
+    <rect x="140" y="156"
+          width="16.679151061173535"
+          height="18"
+          rx="6"
+          fill="#58a6ff"/>
+
+    <text x="166.67915106117354" y="170">
+        1.6%
+    </text>
+    
+    <text x="10" y="198">CMake</text>
+
+    <rect x="140" y="184"
+          width="5.252693392518611"
+          height="18"
+          rx="6"
+          fill="#58a6ff"/>
+
+    <text x="155.2526933925186" y="198">
+        0.5%
+    </text>
+    
+    <text x="10" y="226">M</text>
+
+    <rect x="140" y="212"
+          width="1.2169972719286077"
+          height="18"
+          rx="6"
+          fill="#58a6ff"/>
+
+    <text x="151.21699727192862" y="226">
+        0.1%
+    </text>
+    
+    <text x="10" y="254">PowerShell</text>
+
+    <rect x="140" y="240"
+          width="0.9876543209876543"
+          height="18"
+          rx="6"
+          fill="#58a6ff"/>
+
+    <text x="150.98765432098764" y="254">
+        0.1%
+    </text>
+    </svg>
