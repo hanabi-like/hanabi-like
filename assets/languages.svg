@@ -1,118 +1,118 @@
 
-<svg width="700" height="292" xmlns="http://www.w3.org/2000/svg">
+<svg width="800" height="310" xmlns="http://www.w3.org/2000/svg">
 <style>
     text {
         font-family: Arial, sans-serif;
-        font-size: 14px;
+        font-size: 15px;
         fill: #c9d1d9;
     }
 </style>
 
-    <text x="10" y="30">C</text>
+    <text x="20" y="40">C</text>
 
-    <rect x="140" y="16"
-          width="400.0"
-          height="18"
+    <rect x="150" y="30.0"
+          width="500.0"
+          height="20"
           rx="6"
           fill="#58a6ff"/>
 
-    <text x="550.0" y="30">
+    <text x="670.0" y="40">
         39.1%
     </text>
     
-    <text x="10" y="58">C++</text>
+    <text x="20" y="70">C++</text>
 
-    <rect x="140" y="44"
-          width="364.0153511813936"
-          height="18"
+    <rect x="150" y="60.0"
+          width="455.01918897674204"
+          height="20"
           rx="6"
           fill="#58a6ff"/>
 
-    <text x="514.0153511813936" y="58">
+    <text x="625.019188976742" y="70">
         35.6%
     </text>
     
-    <text x="10" y="86">Python</text>
+    <text x="20" y="100">Python</text>
 
-    <rect x="140" y="72"
-          width="144.2086281037592"
-          height="18"
+    <rect x="150" y="90.0"
+          width="180.7832801590604"
+          height="20"
           rx="6"
           fill="#58a6ff"/>
 
-    <text x="294.2086281037592" y="86">
+    <text x="350.7832801590604" y="100">
         14.1%
     </text>
     
-    <text x="10" y="114">MATLAB</text>
+    <text x="20" y="130">MATLAB</text>
 
-    <rect x="140" y="100"
-          width="45.598557358856986"
-          height="18"
+    <rect x="150" y="120.0"
+          width="56.99819669857123"
+          height="20"
           rx="6"
           fill="#58a6ff"/>
 
-    <text x="195.598557358857" y="114">
+    <text x="226.99819669857123" y="130">
         4.5%
     </text>
     
-    <text x="10" y="142">Java</text>
+    <text x="20" y="160">Java</text>
 
-    <rect x="140" y="128"
-          width="44.100430018033016"
-          height="18"
+    <rect x="150" y="150.0"
+          width="55.12553752254127"
+          height="20"
           rx="6"
           fill="#58a6ff"/>
 
-    <text x="194.10043001803302" y="142">
+    <text x="225.12553752254126" y="160">
         4.3%
     </text>
     
-    <text x="10" y="170">HTML</text>
+    <text x="20" y="190">HTML</text>
 
-    <rect x="140" y="156"
-          width="16.679151061173535"
-          height="18"
+    <rect x="150" y="180.0"
+          width="20.848938826466917"
+          height="20"
           rx="6"
           fill="#58a6ff"/>
 
-    <text x="166.67915106117354" y="170">
+    <text x="190.8489388264669" y="190">
         1.6%
     </text>
     
-    <text x="10" y="198">CMake</text>
+    <text x="20" y="220">CMake</text>
 
-    <rect x="140" y="184"
-          width="5.252693392518611"
-          height="18"
+    <rect x="150" y="210.0"
+          width="6.565866740648264"
+          height="20"
           rx="6"
           fill="#58a6ff"/>
 
-    <text x="155.2526933925186" y="198">
+    <text x="176.56586674064826" y="220">
         0.5%
     </text>
     
-    <text x="10" y="226">M</text>
+    <text x="20" y="250">M</text>
 
-    <rect x="140" y="212"
-          width="1.2169972719286077"
-          height="18"
+    <rect x="150" y="240.0"
+          width="1.5212465899107597"
+          height="20"
           rx="6"
           fill="#58a6ff"/>
 
-    <text x="151.21699727192862" y="226">
+    <text x="171.52124658991076" y="250">
         0.1%
     </text>
     
-    <text x="10" y="254">PowerShell</text>
+    <text x="20" y="280">PowerShell</text>
 
-    <rect x="140" y="240"
-          width="0.9876543209876543"
-          height="18"
+    <rect x="150" y="270.0"
+          width="1.2345679012345678"
+          height="20"
           rx="6"
           fill="#58a6ff"/>
 
-    <text x="150.98765432098764" y="254">
+    <text x="171.23456790123456" y="280">
         0.1%
     </text>
     </svg>

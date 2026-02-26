@@ -62,10 +62,10 @@ for lang, size in sorted_langs:
     svg += f'''
     <text x="20" y="{y}">{lang}</text>
 
-    <rect x="{left_margin}" y="{y - bar_height / 2}"
+    <rect x="{left_margin}" y="{y - bar_height}"
           width="{bar_width}"
           height="{bar_height}"
-          rx="6"
+          rx="5"
           fill="#58a6ff"/>
 
     <text x="{left_margin + bar_width + 20}" y="{y}">
