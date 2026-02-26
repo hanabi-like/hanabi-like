@@ -1,78 +1,74 @@
 import requests
 import os
 
-USERNAME = os.environ["GITHUB_ACTOR"]
+# ========= 自动获取 GitHub 用户名 =========
+USERNAME = os.environ.get("GITHUB_ACTOR")
+if not USERNAME:
+    USERNAME = input("请输入你的 GitHub 用户名：")
+
 OUTPUT = "assets/languages.svg"
+os.makedirs("assets", exist_ok=True)
 
-repos_url = f"https://api.github.com/users/{USERNAME}/repos?per_page=100"
-
-repos = requests.get(repos_url).json()
-
+# ========= 获取所有仓库 =========
 language_bytes = {}
+page = 1
+while True:
+    repos_url = f"https://api.github.com/users/{USERNAME}/repos?per_page=100&page={page}"
+    repos = requests.get(repos_url).json()
+    if not repos:
+        break
+    for repo in repos:
+        if repo["fork"]:
+            continue
+        langs = requests.get(repo["languages_url"]).json()
+        for lang, size in langs.items():
+            language_bytes[lang] = language_bytes.get(lang, 0) + size
+    page += 1
 
-# 获取所有仓库语言数据
-for repo in repos:
-    if repo["fork"]:
-        continue
-
-    lang_url = repo["languages_url"]
-    langs = requests.get(lang_url).json()
-
-    for lang, size in langs.items():
-        language_bytes[lang] = language_bytes.get(lang, 0) + size
-
-# 排序
-sorted_langs = sorted(language_bytes.items(),
-                      key=lambda x: x[1],
-                      reverse=True)
-
+# ========= 排序 & 总量 =========
+sorted_langs = sorted(language_bytes.items(), key=lambda x: x[1], reverse=True)
 total = sum(language_bytes.values())
 
-# ===== SVG 参数 =====
-bar_max_width = 400
-bar_height = 18
-gap = 28
-left_margin = 140
+# ========= SVG 参数 =========
+svg_width = 100       # 内部坐标系 0-100
+gap = 10
+top_margin = 5
+bar_start_x = 25
+bar_max_width = 70    # 最大长度占 viewBox 宽度
+text_font_size = 3
 
-svg_height = gap * len(sorted_langs) + 40
+num_langs = len(sorted_langs)
+svg_height = top_margin + gap * num_langs + 5
 
-svg = f'''
-<svg width="700" height="{svg_height}" xmlns="http://www.w3.org/2000/svg">
+# ========= SVG 开始 =========
+svg = f'''<svg viewBox="0 0 {svg_width} {svg_height}" width="100%" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg">
 <style>
-    text {{
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        fill: #c9d1d9;
-    }}
+text {{
+    font-family: Arial, sans-serif;
+    font-size: {text_font_size};
+    fill: #c9d1d9;
+}}
 </style>
 '''
 
-y = 30
+y = top_margin + gap / 2
 
+# ========= 绘制柱状图 =========
 for lang, size in sorted_langs:
     percent = size / total
-    bar_width = percent * bar_max_width
+    bar_len = percent * bar_max_width
     percent_text = f"{percent*100:.1f}%"
 
-    svg += f'''
-    <text x="10" y="{y}">{lang}</text>
-
-    <rect x="{left_margin}" y="{y-14}"
-          width="{bar_width}"
-          height="{bar_height}"
-          rx="6"
-          fill="#58a6ff"/>
-
-    <text x="{left_margin + bar_width + 10}" y="{y}">
-        {percent_text}
-    </text>
-    '''
+    svg += f'<text x="1" y="{y}">{lang}</text>'
+    svg += f'<rect x="{bar_start_x}" y="{y-4}" width="{bar_len}" height="{gap*0.8}" rx="1" fill="#58a6ff"/>'
+    svg += f'<text x="{bar_start_x + bar_len + 1}" y="{y}">{percent_text}</text>'
 
     y += gap
 
 svg += "</svg>"
 
+# ========= 写入文件 =========
 with open(OUTPUT, "w", encoding="utf-8") as f:
     f.write(svg)
 
-print("SVG generated!")
+print(f"SVG generated successfully for user {USERNAME}!")
