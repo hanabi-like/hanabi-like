@@ -1,5 +1,5 @@
 
-<svg width="800" height="310" xmlns="http://www.w3.org/2000/svg">
+<svg width="800" height="280" xmlns="http://www.w3.org/2000/svg">
 <style>
     text {
         font-family: Arial, sans-serif;
@@ -35,25 +35,25 @@
     <text x="20" y="100">Python</text>
 
     <rect x="150" y="80"
-          width="182.06469017636894"
+          width="182.06930958342187"
           height="20"
           rx="5"
           fill="#3572A5"/>
 
-    <text x="352.0646901763689" y="100">
+    <text x="352.06930958342184" y="100">
         14.2%
     </text>
     
     <text x="20" y="130">MATLAB</text>
 
     <rect x="150" y="110"
-          width="56.94343074123005"
+          width="58.463215661637676"
           height="20"
           rx="5"
           fill="#e16737"/>
 
-    <text x="226.94343074123006" y="130">
-        4.5%
+    <text x="228.46321566163766" y="130">
+        4.6%
     </text>
     
     <text x="20" y="160">Java</text>
@@ -92,27 +92,15 @@
         0.5%
     </text>
     
-    <text x="20" y="250">M</text>
+    <text x="20" y="250">PowerShell</text>
 
     <rect x="150" y="230"
-          width="1.5197849204076164"
-          height="20"
-          rx="5"
-          fill="#083fa1"/>
-
-    <text x="171.51978492040763" y="250">
-        0.1%
-    </text>
-    
-    <text x="20" y="280">PowerShell</text>
-
-    <rect x="150" y="260"
           width="1.2333816831271538"
           height="20"
           rx="5"
           fill="#012456"/>
 
-    <text x="171.23338168312716" y="280">
+    <text x="171.23338168312716" y="250">
         0.1%
     </text>
     </svg>
